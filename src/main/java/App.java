@@ -1,6 +1,6 @@
 import start_launcher.StartLauncher;
 
-public class MouseScreenCords {
+public class App {
     public static void main(String[] args) {
         new StartLauncher();
     }

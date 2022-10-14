@@ -2,6 +2,8 @@ package start_launcher;
 
 import cursor_move.Click;
 import cursor_move.DirectHypotenuse;
+import keyboard.CopyTextInBuffer;
+import keyboard.Keyboard;
 import screen.Screen;
 
 import java.awt.*;
@@ -17,6 +19,8 @@ public class StartLauncher {
     public void init() {
         DirectHypotenuse directHypotenuse = new DirectHypotenuse();
         Click click = new Click();
+        Keyboard keyboard = new Keyboard();
+        CopyTextInBuffer copyTextInBuffer = new CopyTextInBuffer();
 
         int[] xyByLauncher; // коорденати іконки запущеного лаунчера
         do {
@@ -26,7 +30,7 @@ public class StartLauncher {
                     5
             ); // координати іконки лаунчера
         } while (xyByLauncher[2] != 1);
-        directHypotenuse.moveCursorAlongStraightLineInHypotenuse(xyByLauncher[0], xyByLauncher[1]); // пересунути туди курсор
+        directHypotenuse.moveCursorAlongStraightLineInHypotenuse(xyByLauncher[0], xyByLauncher[1], false); // пересунути туди курсор
         click.clickLMB(); // клацнути там ЛКМ
         int[] xyLogin = fragmentSearch(
                 "поле вводу логіна 2022.10.11.png",
@@ -34,8 +38,26 @@ public class StartLauncher {
         ); // коорденати поля вводу логіна
 
         // TODO. вікно блокує, всі робо дії. коли воно активне.
-        directHypotenuse.moveCursorAlongStraightLineInHypotenuse(xyLogin[0] + 138, xyLogin[1] + 150); // пересунути туди курсор
+        // TODO. потрібно запустити інтеледжі від адміна, та активувати рух курсора за допомогою клавіатури
+        directHypotenuse.moveCursorAlongStraightLineInHypotenuse(xyLogin[0] + 138, xyLogin[1] + 150, true); // пересунути туди курсор
         click.clickLMB(); // клацнути там ЛКМ
+        keyboard.highlightAll(); // виділити там все
+        copyTextInBuffer.copyTheTextToTheClipboard(CopyTextInBuffer.Type.login, "person_1.txt"); // копіювати в буфер логін
+        keyboard.pasteFromBuffer(); // вставити з буфера
+        directHypotenuse.moveCursorAlongStraightLineInHypotenuse(xyLogin[0] + 138, xyLogin[1] + 150 + 63, true); // пересунути туди курсор
+        click.clickLMB(); // клацнути там ЛКМ
+        keyboard.highlightAll(); // виділити там все
+        copyTextInBuffer.copyTheTextToTheClipboard(CopyTextInBuffer.Type.password, "person_1.txt"); // копіювати в буфер пароль
+        keyboard.pasteFromBuffer(); // вставити з буфера
+        keyboard.pressEnter(); // натиснути ентер
+        int[] xyPlay = new int[3];
+        while (xyPlay[2] == 0) {
+            xyPlay = fragmentSearch(
+                    "є кнопка грати.png",
+                    1
+            ); // координати кнопки грати
+        }
+        keyboard.pressEnter(); // натиснути ентер
     }
 
     private void startCommand() { // запуск лаунчера
