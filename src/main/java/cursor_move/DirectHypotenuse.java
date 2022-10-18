@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class DirectHypotenuse {
-    public void moveCursorAlongStraightLineInHypotenuse(int setX, int setY, boolean enableKeyboard) { // пряме переміщення курсору гіпотенузою
+    public void moveCursorAlongStraightLineInHypotenuse(int setX, int setY) { //, boolean enableKeyboard) { // пряме переміщення курсору гіпотенузою
         boolean flag = true; // датчик завершення переміщення (не завершено)
         double a = 0, b = 0;  // датчик реагування на вплив користувача під час переміщення курсору
         while (flag) { // виконувати пока датчик не зафіксував завершення переміщення

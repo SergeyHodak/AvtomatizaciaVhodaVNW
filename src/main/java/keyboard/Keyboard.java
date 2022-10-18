@@ -50,4 +50,17 @@ public class Keyboard {
             throw new RuntimeException(e);
         }
     }
+
+    public void pressArrowDown() { // натиснути стрілку вниз
+        try {
+            Robot robot = new Robot();
+            robot.delay(100); // затримка
+            robot.keyPress(KeyEvent.VK_PAGE_DOWN); // зажать стрілку вниз
+            robot.delay(200); // затримка
+            robot.keyRelease(KeyEvent.VK_PAGE_DOWN); // відпустити стрілку вниз
+            robot.delay(100); // затримка
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
