@@ -39,11 +39,24 @@ public class ChooseACharacter {
                     1
             );
             if (xyCharacter[2] != 1) {
+                // TODO. не працює
                 keyboard.pressArrowDown();
             }
         } while (xyCharacter[2] != 1);
 
         // натиснути ентер
         keyboard.pressEnter();
+
+        // знайти кнопку молитви
+        int[] xyPrayer; // коорденати іконки молитви
+        do {
+            xyPrayer = fragmentSearch.get(
+                    rows[2] + "_молитва.png",
+                    1
+            ); // координати іконки лаунчера
+        } while (xyPrayer[2] != 1);
+        // TODO. не працює
+        directHypotenuse.moveCursorAlongStraightLineInHypotenuse(xyByLauncher[0] + 10, xyByLauncher[1] + 10); // пересунути туди курсор
+        click.clickLMB(); // клацнути там ЛКМ
     }
 }

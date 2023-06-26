@@ -4,7 +4,8 @@ import screen.Screen;
 
 import java.time.LocalDateTime;
 
-public class SearchForAFragmentWithinTheSpecifiedTime { // пошук фрагменту протягом вказаного часу
+/** пошук фрагменту протягом вказаного часу */
+public class SearchForAFragmentWithinTheSpecifiedTime {
     public int[] get(String filename, int waitMinutes) {
         Screen screen = new Screen();
         LocalDateTime timeStart = LocalDateTime.now(); // час від запуску

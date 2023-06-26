@@ -6,7 +6,9 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
+// зберегти в буфері інформацію
 public class CopyTextInBuffer {
+
     public void copyTheTextToTheClipboard(Type type, String fileName) {
         ReadFile readFile = new ReadFile();
         String text = readFile.readFile(fileName);

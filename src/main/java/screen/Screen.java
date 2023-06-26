@@ -6,14 +6,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/** пошук координат, за вказаним зображенням з файлу, перевірити його наявність на загальному екрані */
 public class Screen {
+    // отримати координати ікс та ігрик за вказаним фрагментом
     public int[] getXYByImage(String filename) {
-        int[] result = new int[3]; // координата ширини, висоти, та інформація що співпадінь нема позначена нульом
+        int[] result = new int[3]; // координата ширини, висоти, та інформація що збігу нема == null
         try {
             Robot robot = new Robot(); // клас для автоматизованих тестів по управлінню клавою та мишею
             BufferedImage screen = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize())); // скрін монітору
-            BufferedImage image = ImageIO.read(new File("src/main/java/img/" + filename)); // зображення яке шукаєм
-            boolean screenMatches = false; // чи є повне співпадання
+            BufferedImage image = ImageIO.read(new File("src/main/java/img/" + filename)); // зображення яке шукаємо
+            boolean screenMatches = false; // чи є повне збігання
             int screenX=0; // результат. x - ширина
             int screenY=0; // результат. y - висота
             for (int i = 0; i < screen.getWidth() - image.getWidth(); i++) { // пробіжка по ширині скріншота
@@ -29,9 +31,9 @@ public class Screen {
                         if(!matches)break; // якщо піксель не відповідає шуканому, то прервати цей внутрішній цикл
                     }
                     if(matches) { //якщо відповідає шуканому
-                        screenMatches = true; // є повне співпадання
-                        screenX = i; // зберегди значення першого пікселю зліва, який співпав
-                        screenY = j; // зберегти значення першого пікселю зверху, який співпав
+                        screenMatches = true; // є повний збіг
+                        screenX = i; // зберегти значення першого пікселю зліва, який має збіг
+                        screenY = j; // зберегти значення першого пікселю зверху, який має збіг
                         break; // прервати цикл фор пробіжки по висоті скріншота
                     }
                 }

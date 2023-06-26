@@ -3,7 +3,9 @@ import start_launcher.StartLauncher;
 
 public class App {
     public static void main(String[] args) {
+        // стартовий лаунчер - проходить ідеально
         new StartLauncher();
-        new ChooseACharacter();
+        // вибір персонажа - не працює
+        //new ChooseACharacter();
     }
 }

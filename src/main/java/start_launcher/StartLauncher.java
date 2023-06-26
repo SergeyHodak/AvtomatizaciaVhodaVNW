@@ -10,19 +10,33 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/** пройти стартове вікно, в якому може бути підтягнуте оновлення гри, до наступного вікна */
 public class StartLauncher {
     public StartLauncher() {
-        init();
+        init(); // запустити метод при створенні цього класу.
     }
 
+    // посилання на ярлик гри
+    static final String A_LINK_TO_THE_GAME_LAUNCH_ICON = "C:/Users/Serge/Desktop/Сломалось что то, нужно править.lnk";
+
     public void init() {
+
+        // для руху прямою гіпотенузою
         DirectHypotenuse directHypotenuse = new DirectHypotenuse();
+
+        // для клацання лівою кнопкою миші
         Click click = new Click();
+
+        // для виконання комбінованих дій з клавіатури
         Keyboard keyboard = new Keyboard();
+
+        // для запису в буфер текстової інформації по вказаному параметру
         CopyTextInBuffer copyTextInBuffer = new CopyTextInBuffer();
+
+
         SearchForAFragmentWithinTheSpecifiedTime fragmentSearch = new SearchForAFragmentWithinTheSpecifiedTime();
 
-        int[] xyByLauncher; // коорденати іконки запущеного лаунчера
+        int[] xyByLauncher; // координати іконки запущеного лаунчера
         do {
             startCommand(); // запуск лаунчера
             xyByLauncher = fragmentSearch.get(
@@ -66,12 +80,20 @@ public class StartLauncher {
             ); // координати іконки лаунчера
         } while (xyExit[2] != 1);
         directHypotenuse.moveCursorAlongStraightLineInHypotenuse(xyExit[0], xyExit[1]); // пересунути курсор на вже неактивну іконку лаунчера щоб він згорнувся
+
+        // зачикати
+        try {
+            Thread.sleep(30000); // 30 секунд
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void startCommand() { // запуск лаунчера
+    /** запуск ярлика */
+    private void startCommand() {
         try {
-            File file=new File("C:/Users/Serge/Desktop/Сломалось что то, нужно править.lnk");
-            Desktop.getDesktop().open(file);
+            File file = new File(A_LINK_TO_THE_GAME_LAUNCH_ICON); // задати розташування файлу
+            Desktop.getDesktop().open(file); // виконати запуск файлу за вказаною адресою
         } catch (IOException e) {
             e.printStackTrace();
         }
